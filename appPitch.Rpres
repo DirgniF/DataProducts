@@ -1,0 +1,52 @@
+MAP and ALTITUDE PROFILE PLOTTER
+========================================================
+author: DirgniF
+date: January 13, 2016
+
+What is the app all about?
+========================================================
+
+Using this app, you can upload a *.gpx file of a route or track and the app will
+
+- Plot your route on a map
+- Plot an altitude profile
+
+Plot your route on a map
+========================================================
+
+The app 
+- reads the coordinates in the gpx file
+- extracts the right Google Map background
+- plots the track on the Google Map
+
+
+Plot an altitude profile
+========================================================
+
+The app
+- reads the elevation from the gpx file
+- calculates the distance, using the great circle distance (Haversine Distance) between 2 points on the surface of a sphere
+- plots the elevation versus the distance
+
+Haversine formula illustrated
+========================================================
+
+More background on the Haversine formula can be found [here](http://www.r-bloggers.com/great-circle-distance-calculations-in-r/) 
+<small>
+```{r haversine Distance}
+haverDist<-function(aLong,aLat,bLong,bLat){
+    dLat<-2*pi*(bLat-aLat)/360.0
+    dLon<-2*pi*(bLong-aLong)/360.0
+    a<-(sin(dLat/2))^2+ cos(2*pi*aLat/360)*cos(2*pi*bLat/360)*(sin(dLon/2)^2)
+    unname(6371*2*atan2(sqrt(a),sqrt(1-a)))}
+
+```
+</small>
+We illustrate by calculating the distance in km, between New York and Chicago, using latitude and longitude for those cities.
+<small>
+```{r distance example}
+    NY<-c(Lon=-73.987228,Lat=40.743211)
+    CH<-c(Lon=-87.634691,Lat=41.865105)
+    haverDist(NY["Lon"],NY["Lat"],CH["Lon"],CH["Lat"])
+```
+</small>
