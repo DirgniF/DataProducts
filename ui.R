@@ -6,7 +6,7 @@ shinyUI(
     
         # Application title
         headerPanel("MAP and ALTITUDE PROFILE PLOTTER"),
-    
+        
         # Sidebar with some information and high level input
         sidebarPanel(
             
@@ -22,9 +22,15 @@ shinyUI(
            # add a link to website with more gpx tracks.        
             tags$h5(class="header", checked=NA,
                      tags$p("For more trails with GPX tracks that can be downloaded, use the following link:"),
-                     tags$a(href="http://www.walkhighlands.co.uk/long-distance-routes.shtml", "Scotland's Great Trails")
-            ),
-            
+                     tags$a(href="http://www.walkhighlands.co.uk/long-distance-routes.shtml", "Scotland's Great Trails")),
+           
+           
+           # link to Github
+           tags$h5(class="header",checked=NA,
+                    tags$p("For Source code, follow link:"),
+                    tags$a(href="https://github.com/DirgniF/DataProducts", "Github")),
+        
+               
            # user can choose demo mode, or select a file. default is demo mode.
             radioButtons("SelectFile", label = h4("GPX Choice"),
                 choices = list("Show me a Demo" = 1, "Let me upload a file from my PC" = 2),selected = 1),
